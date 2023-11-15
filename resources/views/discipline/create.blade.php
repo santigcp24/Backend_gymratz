@@ -13,11 +13,13 @@ formulario creacion de disciplinas
     </div>
 @endif
 
+<script src="{{asset('js2/discipline_val.js')}}"></script>
+
 <div class="container">
     {{-- el enctype sirve para mandar archivos img  --}}
     {{-- @ llave de seguridad para saber de donde proviene y que llegue la informacion  --}}
-    <form action="{{url("/discipline")}}" method="post" enctype="multipart/form-data">
-        <h1>Crear empleados</h1>
+    <form action="{{url("/discipline")}}" method="post" enctype="multipart/form-data" onsubmit="return validar();">
+        <h1>Crear disciplina</h1>
         @csrf
 
         <div class="form-group">
@@ -47,5 +49,6 @@ formulario creacion de disciplinas
         <br>
     </form>
 </div>
+
 @endsection
 

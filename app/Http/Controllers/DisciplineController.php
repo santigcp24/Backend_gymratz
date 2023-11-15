@@ -31,16 +31,20 @@ class DisciplineController extends Controller
     public function store(Request $request)//se almacena con los nombre dados en el formulario no id
     {
         //validacion servidor, se pone el name del campo en el formulario no en la base de datos
-
+        //estructura unique=tabla,columna
         $campos=[
-            'nombredisciplina'=>'required|string',
-            'descripciondisciplina'=>'required|string',
-            'fotodisciplina'=>'required|max:10000|mimes:jpeg,png,jpg',
+            'nombredisciplina'=>'required|unique:disciplines,nombre_disciplina|string',
+            'descripciondisciplina'=>'nullable|string',
+            'fotodisciplina'=>'nullable|max:10000|mimes:jpeg,png,jpg',
         ];
 
 
         $mensajes=[
-            'required'=>'el :attribute es requerido'
+            'nombredisciplina.required'=>'el nombre es requerido',
+            'nombredisciplina.unique'=>'el nombre debe ser unico',
+            'descripciondisciplina.nullable'=>'La descripcion no tiene el formato adecuado',
+            'fotodisciplina.nullable'=>'La foto no tiene el formato adecuado',
+
         ];
 
         $this->validate($request,$campos,$mensajes);
@@ -86,19 +90,21 @@ class DisciplineController extends Controller
         //validacion servidor, se pone el name del campo en el formulario no en la base de datos
 
         $campos=[
-            'nombredisciplina'=>'required|string',
-            'descripciondisciplina'=>'required|string',
+            //revisar este campo
+            'nombredisciplina'=>'required|unique:disciplines,nombre_disciplina|string',
+            'descripciondisciplina'=>'nullable|string',
             // 'fotodisciplina'=>'required|max:10000|mimes:jpeg,png,jpg',
         ];
 
 
         $mensajes=[
-            'required'=>'el :attribute es requerido'
+            'nombredisciplina.required'=>'el nombre es requerido',
+            'nombredisciplina.unique'=>'el nombre debe ser unico',
         ];
 
         if($request->hasFile("fotodisciplina")){
-            $campos=['fotodisciplina'=>'required|max:10000|mimes:jpeg,png,jpg',];
-            $mensajes=['fotodisciplina.required'=>'la foto es requerida'];
+            $campos=['fotodisciplina'=>'nullable|max:10000|mimes:jpeg,png,jpg',];
+            $mensajes=['fotodisciplina.nullable'=>'la foto es requerida'];
         }
             
 

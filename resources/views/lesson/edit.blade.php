@@ -13,15 +13,15 @@ formulario de edicion
     </div>
 @endif
 <div class="container">
-    <h1>Editar empleados</h1>
-    <form action="{{url('/discipline/'.$discipline->id)}}" method="post" enctype="multipart/form-data" onsubmit="return validar();">
+    <h1>Editar salon</h1>
+    <form action="{{url('/lesson/'.$lesson->id)}}" method="post" enctype="multipart/form-data" onsubmit="return validar();">
     @csrf
     {{method_field('PATCH')}}
 
-    @include('discipline.form');
+    @include('lesson.form');
 
 
     </form>
 </div>
-<script src="{{asset('js2/discipline_val.js')}}"></script>
+<script src="{{asset('js2/lesson_val.js')}}"></script>
 @endsection

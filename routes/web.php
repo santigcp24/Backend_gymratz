@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DisciplineController;
-
+use App\Http\Controllers\ClassroomController;
+use App\Http\Controllers\LessonController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +20,9 @@ Route::get('/', function () {
 });
 
 Route::resource('discipline', DisciplineController::class);
+Route::resource('classroom', ClassroomController::class);
+Route::resource('lesson', LessonController::class);
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
